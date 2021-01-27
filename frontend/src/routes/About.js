@@ -1,17 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import useTitle from '../hooks/useTitle';
 
-
-const Home = () => {
-  useTitle('HOME');
-
+const About = () => {
+  useTitle("ABOUT")
   return (
     <div>
-      testsetsetest
+      about
     </div>
   )
 }
 
-
-export default Home;
+export default About;
