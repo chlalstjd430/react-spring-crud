@@ -5,7 +5,7 @@ const About = () => {
   useTitle("ABOUT")
   return (
     <div>
-      about
+      about...
     </div>
   )
 }

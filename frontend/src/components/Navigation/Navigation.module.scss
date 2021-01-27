@@ -1,3 +1,43 @@
 .nav{
-  
+  height: 100px;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  padding: 0px 15vw;
+  box-shadow: 0px 3px 6px #00000029;
+  position: fixed;
+  box-sizing: border-box;
+  width: 100%;
+
+  .nav__column {
+    display: flex;
+    justify-content: space-between;
+
+    > * > * {
+      padding: 0px 20px;
+    }
+    
+    .nav__log {
+      > img {
+        width: 32px;
+        height: 32px;
+      }
+    }
+    .nav__link {
+      font-size: 24px;
+    }
+    .nav__icon {
+      color: #BAA2FF40;
+      font-size: 24px;
+    }
+    .nav__search {
+      > input {
+        width: 178px;
+        height: 100px;
+        background-color: blue;
+      }
+    }
+  }
 }
