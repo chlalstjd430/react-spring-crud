@@ -1,12 +1,11 @@
 package com.springreact.demo.entity;
 
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
+@Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(name = "posts")
 public class Post extends BaseTimeEntity {
