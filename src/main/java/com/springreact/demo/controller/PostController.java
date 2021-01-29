@@ -20,7 +20,7 @@ public class PostController {
         @RequestParam(required = false, defaultValue = "0")  int currentPage,
         @RequestParam(required = false, defaultValue = "10") int size
     ) {
-        return postRepository.findAll(PageRequest.of(currentPage, size, Sort.by("createdDate").ascending()));
+        return postRepository.findAll(PageRequest.of(currentPage, size, Sort.by("id").descending()));
     }
 
     @GetMapping("/{postId}")
@@ -51,5 +51,4 @@ public class PostController {
 
         return postRepository.save(post);
     }
-
 }
