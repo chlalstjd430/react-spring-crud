@@ -10,13 +10,15 @@
   position: fixed;
   box-sizing: border-box;
   width: 100%;
+  top: 0;
 
   .nav__column {
     display: flex;
     justify-content: space-between;
+    align-items: center;
 
     > * > * {
-      padding: 0px 20px;
+      padding: 0px 30px;
     }
     
     .nav__log {
@@ -26,17 +28,35 @@
       }
     }
     .nav__link {
-      font-size: 24px;
+      font-size: 20px;
     }
     .nav__icon {
       color: #BAA2FF40;
       font-size: 24px;
     }
     .nav__search {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #BAA2FF40;
+      padding: 0px;
+      border-radius: 24px;
+
+      > * {
+        padding: 0px;
+      }
       > input {
         width: 178px;
-        height: 100px;
-        background-color: blue;
+        height: 32px;
+        background-color: rgba(0, 0, 0, 0);
+        border: none;
+      }
+      > button {
+        background-color: rgba(0, 0, 0, 0);
+        border: none;
+        width: 30px;
+        height: 30px;
+        font-size: 18px;
       }
     }
   }

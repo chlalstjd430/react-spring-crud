@@ -6,8 +6,8 @@ function Navigation() {
   return (
     <div className={styles.nav}>
       <div className={styles.nav__column}>
-        <div className={styles.nav__log}>
-          <img src="../../../public/joljak.jpg" alt="logo"/>
+        <div className={styles.nav__link}>
+          <p>게시판</p>
         </div>
         <div className={styles.nav__link}>
           <Link to="/">Home</Link>
@@ -17,14 +17,16 @@ function Navigation() {
         </div>
       </div>
       <div className={styles.nav__column}>
-        <div className={styles.nav__icon}>
-          <i class="fas fa-user-alt"></i>
-        </div>
+        <Link to="/">
+          <div className={styles.nav__icon}>
+            <i className="fas fa-user-alt"></i>
+          </div>
+        </Link>
         <div className={styles.nav__search}>
           <button>
-
+            <i className="fas fa-search 3x"></i>
           </button>
-          <input type="text" placeholder="Write a message..." />  
+          <input type="text" placeholder="Search" />  
         </div>
       </div>
       
