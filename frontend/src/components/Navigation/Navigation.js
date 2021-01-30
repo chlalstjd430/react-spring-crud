@@ -1,16 +1,29 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, Redirect, useHistory } from "react-router-dom";
 import styles from "./Navigation.module.scss";
 
 function Navigation() {
+  const [keyword, setKeyword] = useState();
+  const history = useHistory();
+
+  const keywordChange = (e) => {
+    setKeyword(e.target.value);
+  }
+  const searchButtonClick = () => {
+    const url = `/posts?keyword=${keyword === undefined ? '' : keyword}`;
+    console.log(url)
+    document.location.href=url;
+        
+  }
+
   return (
     <div className={styles.nav}>
       <div className={styles.nav__column}>
         <div className={styles.nav__link}>
-          <p>게시판</p>
+          <Link to="/">Home</Link>
         </div>
         <div className={styles.nav__link}>
-          <Link to="/">Home</Link>
+          <Link to="/posts">Post</Link>
         </div>
         <div className={styles.nav__link}>
           <Link to="/about">About</Link>
@@ -23,10 +36,10 @@ function Navigation() {
           </div>
         </Link>
         <div className={styles.nav__search}>
-          <button>
+          <button onClick={searchButtonClick}>
             <i className="fas fa-search 3x"></i>
           </button>
-          <input type="text" placeholder="Search" />  
+          <input type="text" placeholder="Search" onChange={keywordChange}/>  
         </div>
       </div>
       

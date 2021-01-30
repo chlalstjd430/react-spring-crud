@@ -1,0 +1,50 @@
+.home {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+
+  .home__header {
+    background-color: white;
+    width: 100%;
+    height: 200px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    > * {
+      padding-top: 20px;
+    }
+
+
+    h1 {
+      font-size: 30px;
+    }
+    h3 {
+      font-size: 20px;
+    }
+  }
+  }
+  
+  .posts {
+    padding: 50px 100px;
+    background-color: #F2F2F2;
+    height: 100vh;
+
+    .posts__header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 20px;
+
+      .posts__header__column {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      h2 {
+        font-size: 20px;
+      }
+  }
+}
