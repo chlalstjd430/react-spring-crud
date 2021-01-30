@@ -34,6 +34,7 @@ const Posts = ({ location }) => {
   
   useEffect(() => {
     getPosts();
+    console.log("userEffect!!");
   }, [])
 
   const handleScroll = () => {
@@ -88,7 +89,7 @@ const Posts = ({ location }) => {
           </div>
           <div className={styles.posts__header__column}>
             <Link to="/create-post">
-              <PostButton content="글쓰기">
+              <PostButton content="글작성">
               </PostButton>
             </Link>
           </div>

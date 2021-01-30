@@ -1,10 +1,9 @@
 import React, { useState } from "react";
-import { Link, Redirect, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import styles from "./Navigation.module.scss";
 
 function Navigation() {
   const [keyword, setKeyword] = useState();
-  const history = useHistory();
 
   const keywordChange = (e) => {
     setKeyword(e.target.value);

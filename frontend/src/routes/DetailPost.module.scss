@@ -1,39 +1,43 @@
-.home {
-  background-color: white;
+.post__detail {
   display: flex;
-  flex-direction: column;
-
-  .home__header {
+  justify-content: center;
+  width: 100%;
+  padding: 100px 100px;
+  box-sizing: border-box;
+  
+  .post__detail__container {
+    width: 80%;
     background-color: white;
-    width: 100%;
-    height: 200px;
-    text-align: center;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    justify-content: space-between;
+    flex-direction: column;
+    padding: 30px;
 
-    .posts__header__column {
-
+    > * {
+      padding: 20px 0px;
     }
 
-    h1 {
-      font-size: 30px;
+    .post__title {
+      h1 {
+        font-size: 47px;
+      }
+    }
+
+    .post__info {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+
+      .post__info__column {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+    }
+
+    .post__content {
     }
   }
   
-  .posts {
-    padding: 50px 100px;
-    background-color: #F2F2F2;
-    height: 100vh;
-
-    .posts__header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding-bottom: 20px;
-      h2 {
-        font-size: 20px;
-      }
-    }
-  }
 }
