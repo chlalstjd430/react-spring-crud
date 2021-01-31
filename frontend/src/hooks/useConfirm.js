@@ -9,8 +9,9 @@ const useConfirm = (message = null, onConfirm, onCancel) => {
   const confirmAction = () => {
     if (window.confirm(message)) {
       onConfirm();
-    } else {
-      onCancel();
+    } 
+    else if (onCancel) {
+      onCancel()
     }
   };
 

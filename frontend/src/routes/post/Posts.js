@@ -2,15 +2,14 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import queryString from 'query-string';
-import useTitle from '../hooks/useTitle';
+import useTitle from '../../hooks/useTitle';
 import styles from "./Posts.module.scss";
-import Post from '../components/Post/Post';
-import PostButton from '../components/button/PostButton';
+import Post from '../../components/Post/Post';
+import PostButton from '../../components/button/PostButton';
 
 
 const Posts = ({ location }) => {
   const query = queryString.parse(location.search);
-  console.log(query);
   const [isLoading, setIsLoading] = useState(true);
   const [posts, setPosts] = useState([]);
   const [pageInfo, setPageInfo] = useState({last: false, currentPage: 0, nextPage: 0, total: 0, });
@@ -19,7 +18,6 @@ const Posts = ({ location }) => {
   const getPosts = async() => {
     await axios.get(`${url}currentPage=${pageInfo.nextPage}`)
       .then((response) => {
-        console.log("api 실행...")
         const data = response.data;
         const postsData = response.data.content;
         const mergeData = posts.concat(...postsData);
@@ -34,7 +32,6 @@ const Posts = ({ location }) => {
   
   useEffect(() => {
     getPosts();
-    console.log("userEffect!!");
   }, [])
 
   const handleScroll = () => {
@@ -88,7 +85,7 @@ const Posts = ({ location }) => {
             }
           </div>
           <div className={styles.posts__header__column}>
-            <Link to="/create-post">
+            <Link to="/posts/create">
               <PostButton content="글작성">
               </PostButton>
             </Link>

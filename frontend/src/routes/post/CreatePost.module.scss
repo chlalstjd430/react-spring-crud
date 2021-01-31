@@ -1,0 +1,43 @@
+.post__create {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 100px 100px;
+  box-sizing: border-box;
+  
+  .post__create__container {
+    width: 80%;
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    padding: 30px;
+
+    > * {
+      padding: 20px 0px;
+    }
+
+    .post__create__title {
+      input {
+        width: 100%;
+        height: 40px;
+        font-size: 30px;
+        border: none;
+      }
+    }
+  }
+
+  .post__create__content {
+    height: 600px;
+  }
+
+  .post__create__bottom {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    :last-child {
+      margin-left: 20px;
+    }
+  }
+  
+}
