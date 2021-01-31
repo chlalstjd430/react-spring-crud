@@ -17,10 +17,11 @@ public class PostController {
 
     @GetMapping
     public Page<Post> getPosts(
+        @RequestParam(required = false, defaultValue = "") String keyword,
         @RequestParam(required = false, defaultValue = "0")  int currentPage,
         @RequestParam(required = false, defaultValue = "10") int size
     ) {
-        return postRepository.findAll(PageRequest.of(currentPage, size, Sort.by("id").descending()));
+        return postRepository.findAllByTitleContains(PageRequest.of(currentPage, size, Sort.by("id").descending()), keyword);
     }
 
     @GetMapping("/{postId}")
@@ -28,7 +29,7 @@ public class PostController {
         return postRepository.findById(postId).orElseThrow(NullPointerException::new);
     }
 
-    @PatchMapping("/{postId}")
+    @PutMapping("/{postId}")
     public Post updatePost(@PathVariable Long postId, @RequestBody PostRequest postRequest) {
         Post post = postRepository.findById(postId).orElseThrow(NullPointerException::new);
         post.setContent(postRequest.getContent());

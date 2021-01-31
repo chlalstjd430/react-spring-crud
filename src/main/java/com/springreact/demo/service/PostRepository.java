@@ -7,6 +7,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface PostRepository extends ExtendRepository<Post>{
-    Page<Post> findAll(Pageable pageable);
-
+    Page<Post> findAllByTitleContains(Pageable pageable, String keyword);
 }

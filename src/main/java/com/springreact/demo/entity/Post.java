@@ -14,6 +14,8 @@ public class Post extends BaseTimeEntity {
     private Long id;
 
     private String title;
+
+    @Lob
     private String content;
 
     @Builder
