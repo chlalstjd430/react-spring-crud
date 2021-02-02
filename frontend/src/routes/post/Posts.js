@@ -9,38 +9,43 @@ import PostButton from '../../components/button/PostButton';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import Navigation from '../../components/Navigation/Navigation';
 import { PostsContext } from '../../context/PostsContext';
-import { PostsPageInfoContext } from '../../context/PostsPageInfoContext';
 
 const Posts = ({ location }) => {
   const query = queryString.parse(location.search);
+
   const {posts, setPosts} = useContext(PostsContext);
-  const {postsPageInfo, setPostsPageInfo} = useContext(PostsPageInfoContext);
-  console.log(query);
+  const [currentPage, setCurrentPage] = useState(0);
+  const [isLast, setIsLast] = useState(false);
+  const [totalElements, setTotalElements] = useState(0);
 
-  const initState = () => {
-    setPosts([]);
-    setPostsPageInfo({last: false, currentPage: 0, nextPage: 0, total: 0 });
-  }
-  
-  const url = 'https://angelhack-anywhere-library.herokuapp.com/v1/api/posts' + (location.search === '' ? '?' : location.search + '&')
-  const getPosts = async() => {
-    await axios.get(`${url}currentPage=${postsPageInfo.nextPage}`)
-      .then((response) => {
-        const data = response.data;
-        const postsData = response.data.content;
-        const mergeData = posts.concat(...postsData);
-        setPosts(mergeData);
-        setPostsPageInfo({last: data.last, currentPage: data.pageable.pageNumber, nextPage: data.pageable.pageNumber + 1, total: data.totalElements});
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+  const url = 'https://angelhack-anywhere-library.herokuapp.com/v1/api/posts' + (location.search === '' ? '?' : location.search + '&');
+  const getPosts = async (nextPage) => {
+    const { data } = await axios.get(`${url}currentPage=${nextPage}`);
+    console.log(data);
+
+    return data;
   };
-
   useEffect(() => {
-    initState();
-    getPosts();
-  }, [location.search])
+    console.log('————useEffect————')
+
+    const fetch = async () => {
+      const { content, last, totalElements } = await getPosts(0)
+      setPosts(content)
+      setIsLast(Boolean(last))
+      setTotalElements(totalElements)
+    }
+    fetch()
+  }, [])
+
+  const handleLoadMore = async () => {
+    setCurrentPage(currentPage + 1);
+    const {content, last, totalElements} = await getPosts(currentPage)
+    const merged = [...posts, ...content];
+    setPosts(merged);
+    setIsLast(last);
+    setTotalElements(totalElements);
+  }
+
   
   useTitle('HOME');
 
@@ -59,7 +64,7 @@ const Posts = ({ location }) => {
       <div className={styles.posts}>
         <div className={styles.posts__header}>
           <div className={styles.posts__header__column}>
-            <h2>전체 게시글 수 {postsPageInfo.total}</h2>
+            <h2>전체 게시글 수 {totalElements}</h2>
             {
               (function() {
                 if (query.keyword !== undefined) 
@@ -67,7 +72,7 @@ const Posts = ({ location }) => {
                   <>
                     <h2> &nbsp; |  &nbsp; </h2>
                     
-                    <Link to="/posts" onClick={initState}>
+                    <Link to="/posts">
                       <h2> 전체검색</h2>
                     </Link>
                   </>
@@ -85,8 +90,8 @@ const Posts = ({ location }) => {
         <div className={styles.post__container}>
             <InfiniteScroll
               dataLength={posts.length}
-              next={getPosts}
-              hasMore={!postsPageInfo.last}
+              next={handleLoadMore}
+              hasMore={!isLast}
               loader={
                 <p style={{ textAlign: 'center' }}>
                   <b>laoding...</b>

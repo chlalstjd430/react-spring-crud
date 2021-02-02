@@ -5,7 +5,6 @@ import { PostsContext } from "../../context/PostsContext";
 import { PostsPageInfoContext } from "../../context/PostsPageInfoContext";
 
 function Navigation({props}) {
-  const [url, setUrl] = useState("/");
   const [keyword, setKeyword] = useState();
 
   const keywordChange = (e) => {
