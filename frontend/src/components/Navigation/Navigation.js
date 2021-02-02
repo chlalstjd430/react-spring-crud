@@ -1,18 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import styles from "./Navigation.module.scss";
+import { PostsContext } from "../../context/PostsContext";
+import { PostsPageInfoContext } from "../../context/PostsPageInfoContext";
 
-function Navigation() {
+function Navigation({props}) {
+  const [url, setUrl] = useState("/");
   const [keyword, setKeyword] = useState();
 
   const keywordChange = (e) => {
     setKeyword(e.target.value);
   }
-  const searchButtonClick = () => {
-    const url = `/posts?keyword=${keyword === undefined ? '' : keyword}`;
-    console.log(url)
-    document.location.href=url;
-        
+  const {setPosts} = useContext(PostsContext);
+  const {setPostsPageInfo} = useContext(PostsPageInfoContext);
+  const initState = () => {
+    setPosts([]);
+    setPostsPageInfo({last: false, currentPage: 0, nextPage: 0, total: 0 });
   }
 
   return (
@@ -22,7 +25,7 @@ function Navigation() {
           <Link to="/">Home</Link>
         </div>
         <div className={styles.nav__link}>
-          <Link to="/posts">Post</Link>
+          <Link to="/posts" onClick={initState}>Post</Link>
         </div>
         <div className={styles.nav__link}>
           <Link to="/about">About</Link>
@@ -35,9 +38,11 @@ function Navigation() {
           </div>
         </Link>
         <div className={styles.nav__search}>
-          <button onClick={searchButtonClick}>
-            <i className="fas fa-search 3x"></i>
-          </button>
+          <Link to={`/posts?keyword=${keyword}`} onClick={initState}>
+            <button>
+              <i className="fas fa-search 3x"></i>
+            </button>
+          </Link>
           <input type="text" placeholder="Search" onChange={keywordChange}/>  
         </div>
       </div>
