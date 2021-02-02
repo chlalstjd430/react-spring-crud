@@ -19,7 +19,7 @@ const Posts = ({ location, match, history }) => {
     setPageInfo({last: false, currentPage: 0, nextPage: 0, total: 0 });
   }
   
-  const url = '/v1/api/posts' + (location.search === '' ? '?' : location.search + '&')
+  const url = 'https://angelhack-anywhere-library.herokuapp.com/v1/api/posts' + (location.search === '' ? '?' : location.search + '&')
   const getPosts = async() => {
     await axios.get(`${url}currentPage=${pageInfo.nextPage}`)
       .then((response) => {

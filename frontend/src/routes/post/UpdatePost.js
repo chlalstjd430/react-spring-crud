@@ -34,7 +34,7 @@ const UpdatePost = ({match}) => {
   }, [])
 
   const updatePost = async() => {
-    await axios.put(`/v1/api/posts/${postId}`, {
+    await axios.put(`https://angelhack-anywhere-library.herokuapp.com/v1/api/posts/${postId}`, {
       title: title,
       content: editorRef.current.getInstance().getHtml()
     })

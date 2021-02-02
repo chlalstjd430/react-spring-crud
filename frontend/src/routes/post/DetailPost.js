@@ -13,7 +13,7 @@ const DetailPost = ({ match, history }) => {
   const deletePost = useConfirm(
     "삭제하시겠습니까?",  
     async() => {
-      await axios.delete(`/v1/api/posts/${postId}`)
+      await axios.delete(`https://angelhack-anywhere-library.herokuapp.com/v1/api/posts/${postId}`)
       .then((response) => {
         alert("삭제가 완료되었습니다.");
         document.location.href='/posts';
@@ -29,7 +29,7 @@ const DetailPost = ({ match, history }) => {
 
   
   const getPost = async() => {
-    await axios.get(`/v1/api/posts/${postId}`)
+    await axios.get(`https://angelhack-anywhere-library.herokuapp.com/v1/api/posts/${postId}`)
       .then((response) => {
         const data = response.data;
   

@@ -12,7 +12,7 @@ const CreatePost = () => {
   const [title, setTitle] = useState([]);
   const [editorRef] = useState(React.createRef());
   const registPost = async() => {
-    await axios.post(`/v1/api/posts/post`, {
+    await axios.post(`https://angelhack-anywhere-library.herokuapp.com/v1/api/posts/post`, {
       title: title,
       content: editorRef.current.getInstance().getHtml()
     })
