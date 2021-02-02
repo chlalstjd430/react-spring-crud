@@ -52,4 +52,15 @@ public class PostController {
 
         return postRepository.save(post);
     }
+
+    @GetMapping("/test")
+    public void test() {
+        for (int i = 1; i <= 100; i++) {
+            Post post = Post.builder()
+                    .content(i + "번째 내용")
+                    .title(i + "번쨰 제목")
+                    .build();
+            postRepository.save(post);
+        }
+    }
 }
